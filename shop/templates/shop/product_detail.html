@@ -1,0 +1,19 @@
+
+{% extends "shop/base.html" %}
+
+{% block title %}
+    <title>{% if is_edit %}Sửa sản phẩm{% else %}Thêm sản phẩm mới{% endif %}</title>
+{% endblock %}
+
+{% block content %}
+    <body>
+        <h1>{{ product.name }}</h1>
+        <p><strong>Giá:</strong> {{ product.price }} VNĐ</p>
+        <p><strong>Mô tả:</strong> {{ product.description }}</p>
+        <p>
+            <a href="{% url 'product_edit' product.pk %}">Sửa sản phẩm</a> |
+            <a href="{% url 'product_delete' product.pk %}">Xóa sản phẩm</a>
+        <p>
+        <a href="{% url 'product_list' %}">Quay lại danh sách sản phẩm</a></p>
+    </body>
+{% endblock %}

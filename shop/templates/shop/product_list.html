@@ -1,0 +1,45 @@
+
+{% extends "shop/base.html" %}
+
+{% block title %}Danh sách sản phẩm{% endblock %}
+
+{% block content %}
+<body>
+    <form method="get" action="">
+        <input type="text" name="q" placeholder="Tìm kiếm sản phẩm..." value="{{ query|default:'' }}">
+        <button type="submit">Tìm kiếm</button>
+    </form>
+    <h1>Danh sách sản phẩm</h1>
+    <p><a href="{% url 'product_create' %}">Thêm sản phẩm mới</a></p>
+    <ul>
+        {% for product in page_obj %}
+            <li>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" width="200">
+                {% endif %}
+                <strong>
+                    <a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a>
+                </strong> - {{ product.price }} VNĐ<br>
+                {{ product.description }}
+
+            </li>
+        {% empty %}
+            <li>Chưa có sản phẩm nào.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Phân trang -->
+    <div>
+        {% if page_obj.has_previous %}
+            <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">Trang trước</a>
+        {% endif %}
+
+        <span>Trang {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">Trang sau</a>
+        {% endif %}
+    </div>
+</body>
+
+{% endblock %}

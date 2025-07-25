@@ -1,0 +1,17 @@
+{% extends "shop/base.html" %}
+
+{% block title %}
+    <title>Xóa sản phẩm</title>
+{% endblock %}
+
+{% block content %}
+    <body>
+        <h1>Xóa sản phẩm</h1>
+        <p>Bạn có chắc chắn muốn xóa sản phẩm "{{ product.name }}" không?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Xóa</button>
+            <a href="{% url 'product_detail' product.pk %}">Hủy</a>
+        </form>
+    </body>
+{% endblock %}

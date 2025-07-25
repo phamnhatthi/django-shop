@@ -1,0 +1,26 @@
+
+{% extends "shop/base.html" %}
+
+{% block title %}
+    {% if is_edit %}Sửa sản phẩm{% else %}Thêm sản phẩm mới{% endif %}
+{% endblock %}
+
+{% block content %}
+    <body>
+        <h1>
+            {% if is_edit %}
+                Sửa sản phẩm
+                <p>Chỉnh sửa sản phẩm: {{ product.name }}</p>
+            {% else %}
+                Thêm sản phẩm mới
+            {% endif %}
+        </h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">{% if is_edit %}Cập nhật{% else %}Thêm sản phẩm{% endif %}</button>
+        </form>
+        <p><a href="{% url 'product_list' %}">Quay lại danh sách sản phẩm</a></p>
+
+    </body>
+{% endblock %}
