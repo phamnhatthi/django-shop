@@ -1,0 +1,11 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Trang chủ{% endblock %}
+
+{% block content %}
+<div class="text-center mt-5">
+    <h1>Chào mừng bạn đến với My Shop!</h1>
+    <p>Đây là trang chủ. Bạn có thể xem sản phẩm, đăng nhập, đăng ký, hoặc bắt đầu mua sắm ngay.</p>
+    <a class="btn btn-primary" href="{% url 'product_list' %}">Xem sản phẩm</a>
+</div>
+{% endblock %}
